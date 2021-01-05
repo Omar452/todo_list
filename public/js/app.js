@@ -6131,6 +6131,12 @@ __webpack_require__.r(__webpack_exports__);
         id: todo.id,
         completed: todo.completed
       });
+    },
+    deleteTodo: function deleteTodo(id) {
+      console.log(id);
+      this.$inertia["delete"]('/todos/' + id, {
+        id: id
+      });
     }
   },
   components: {
@@ -53032,8 +53038,18 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "w-1/12" }, [
-                      _vm._v(' ">'),
-                      _c("i", { staticClass: "far fa-trash-alt" })
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.deleteTodo(todo.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "far fa-trash-alt" })]
+                      )
                     ])
                   ]
                 )

@@ -47,7 +47,10 @@ class TodoController extends Controller
 
 
 
-    public function destroy() {
-        
+    public function destroy($id) {
+        if ($id){
+           Todo::find($id)->delete(); 
+        }
+        return redirect()->back()->with('message', 'Todo Deleted Successfully.');
     }
 }

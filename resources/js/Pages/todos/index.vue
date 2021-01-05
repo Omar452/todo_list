@@ -16,7 +16,7 @@
                             <p @click="todoCompleted(todo)" class="cursor-pointer" :class="{ 'line-through text-red-500' : todo.completed}">{{todo.content}}</p>
                         </div>
                         <div class="w-1/12">
-                            <button "><i class="far fa-trash-alt"></i></button>
+                            <button @click.prevent="deleteTodo(todo.id)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </div>
@@ -37,6 +37,10 @@
             todoCompleted(todo) {
                 todo.completed = !todo.completed;
                 this.$inertia.put('/todos/' + todo.id, {id: todo.id, completed: todo.completed});
+            },
+            deleteTodo(id){
+                console.log(id)
+                this.$inertia.delete('/todos/' + id, {id: id});
             }
         },
         components: {
