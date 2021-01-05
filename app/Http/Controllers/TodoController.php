@@ -29,13 +29,23 @@ class TodoController extends Controller
         return redirect()->back()->with('success','todo created successfully');
     }
 
-    public function update() {
+    public function update(Request $request)
+    { 
+        $request->validate([
+            'completed' => ['required', 'boolean'],
+            'id' => ['required']
+        ]);
         
+        $todo = Todo::find($request['id']);
+        
+        $todo->update([
+            'completed' => $request['completed']
+        ]);
+
+        return redirect()->back()->with('message', 'Todo Updated Successfully.');
     }
 
-    public function edit() {
-        
-    }
+
 
     public function destroy() {
         

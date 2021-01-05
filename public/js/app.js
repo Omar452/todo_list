@@ -6120,13 +6120,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['todos'],
+  methods: {
+    todoCompleted: function todoCompleted(todo) {
+      todo.completed = !todo.completed;
+      this.$inertia.put('/todos/' + todo.id, {
+        id: todo.id,
+        completed: todo.completed
+      });
+    }
+  },
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
     CreateTodo: _Pages_todos_create__WEBPACK_IMPORTED_MODULE_1__.default
@@ -53007,18 +53013,27 @@ var render = function() {
                       "flex flex-row content-around rounded shadow-md m-3 p-3 w-full bg-white text-gray-700"
                   },
                   [
-                    _c("div", { staticClass: "w-10/12" }, [
-                      _c("p", [_vm._v(_vm._s(todo.content))])
+                    _c("div", { staticClass: "w-11/12" }, [
+                      _c(
+                        "p",
+                        {
+                          staticClass: "cursor-pointer",
+                          class: {
+                            "line-through text-red-500": todo.completed
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.todoCompleted(todo)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(todo.content))]
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "w-1/12" }, [
-                      _c("button", [_c("i", { staticClass: "far fa-edit" })])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "w-1/12" }, [
-                      _c("button", [
-                        _c("i", { staticClass: "far fa-trash-alt" })
-                      ])
+                      _vm._v(' ">'),
+                      _c("i", { staticClass: "far fa-trash-alt" })
                     ])
                   ]
                 )

@@ -12,14 +12,11 @@
             <div class="max-w-3xl mx-auto sm:px-4 lg:px-8">
                 <div v-for="todo in todos" :key="todo.id" class="flex items-center ">
                     <div class="flex flex-row content-around rounded shadow-md m-3 p-3 w-full bg-white text-gray-700">
-                        <div class="w-10/12">
-                            <p>{{todo.content}}</p>
+                        <div class="w-11/12">
+                            <p @click="todoCompleted(todo)" class="cursor-pointer" :class="{ 'line-through text-red-500' : todo.completed}">{{todo.content}}</p>
                         </div>
                         <div class="w-1/12">
-                            <button><i class="far fa-edit"></i></button>
-                        </div>
-                        <div class="w-1/12">
-                            <button><i class="far fa-trash-alt"></i></button>
+                            <button "><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </div>
@@ -34,8 +31,14 @@
     import CreateTodo from '@/Pages/todos/create'
 
     export default {
-        props: ['todos'],
 
+        props: ['todos'],
+        methods: {
+            todoCompleted(todo) {
+                todo.completed = !todo.completed;
+                this.$inertia.put('/todos/' + todo.id, {id: todo.id, completed: todo.completed});
+            }
+        },
         components: {
             AppLayout,
             CreateTodo

@@ -20,7 +20,6 @@ export default {
     },
     methods: {
         createTodo() {
-
             this.$inertia.post('/todos', {content: this.content});
         }
     }
