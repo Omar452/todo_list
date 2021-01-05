@@ -17,6 +17,9 @@
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </jet-nav-link>
+                            <jet-nav-link :href="route('todos.index')" :active="route().current('todos.index')">
+                                Todos
+                            </jet-nav-link>
                         </div>
                     </div>
 
