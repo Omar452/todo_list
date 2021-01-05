@@ -6,10 +6,12 @@
             </h2>
         </template>
 
-        <div class="py-12">
+        <create-todo></create-todo>
+
+        <div class="p-1 w-full">
             <div class="max-w-3xl mx-auto sm:px-4 lg:px-8">
                 <div v-for="todo in todos" :key="todo.id" class="flex items-center ">
-                    <div class="flex flex-row content-around rounded shadow-md m-3 p-3 w-full">
+                    <div class="flex flex-row content-around rounded shadow-md m-3 p-3 w-full bg-white text-gray-700">
                         <div class="w-10/12">
                             <p>{{todo.content}}</p>
                         </div>
@@ -29,12 +31,14 @@
 
 <script>
     import AppLayout from '@/Layouts/AppLayout'
+    import CreateTodo from '@/Pages/todos/create'
 
     export default {
         props: ['todos'],
 
         components: {
             AppLayout,
+            CreateTodo
         },
     }
 </script>
